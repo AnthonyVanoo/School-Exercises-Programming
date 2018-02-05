@@ -125,7 +125,7 @@
                         <p>&nbsp;&nbsp;let height = parseFloat(document.getElementById("userHeight").value);
                         <p>&nbsp;&nbsp;let weight = parseFloat(document.getElementById("userWeight").value);</p>
                         <p>&nbsp;&nbsp;//Makes sure user input is a number</p>
-                        <p>&nbsp;&nbsp;if ( (isNaN(height)) || (isNaN(weight))) {</p>
+                        <p>&nbsp;&nbsp;if ( (isNaN(height)) || (isNaN(weight)) || (weight < 1) || (height < 1)) {</p>
                             <p>&nbsp;&nbsp;&nbsp;&nbsp;displayBMI.textContent = "Both values need to be a NUMBER greater than 0";</p>
                         <p>&nbsp;&nbsp;} else {</p>
                             <p>&nbsp;&nbsp;&nbsp;&nbsp;let bmiResult = (weight/height) / height;</p>

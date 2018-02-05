@@ -62,7 +62,7 @@ function bmiFunction() {
     let height = parseFloat(document.getElementById("userHeight").value);
     let weight = parseFloat(document.getElementById("userWeight").value);
     //Makes sure user input is a number
-    if ( (isNaN(height)) || (isNaN(weight))) {
+    if ( (isNaN(height)) || (isNaN(weight)) || (weight < 1) || (height < 1)) {
         displayBMI.textContent = "Both values need to be a NUMBER greater than 0";
     } else {
         let bmiResult = (weight/height) / height;
