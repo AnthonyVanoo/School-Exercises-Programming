@@ -1,18 +1,30 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Array Excercises</title>
+    <title>Array Excercise</title>
 	<meta charset="UTF-8">
+	<meta name="author" content="Anthony Vanoostendorp">
+	<link rel="stylesheet" href="css/styles.css" type="text/css">
   </head>
   <body>
-    <h1>Array Handling: Demo 1</h1>
-    <input type="text" id="nameInput" placeholder="Enter Students name" >
-    <input type="text" id="task1Input" placeholder="First assignment grade %" >
-    <input type="text" id="task2Input" placeholder="Second assignment grade %" >
-    <button id="addName">Add student info</button>
-	<button id = "showButton">Show all student info</button>
-	<button id="clearArray">Clear all info</button>
-	<p id ="outputMsg"></p>
+    <div class="container">
+        <div class="test">
+            <h1>Two task Calculator</h1>
+            <p>Up to five students and their task scores can be added.</p>
+            <p>The calculator can display the information and results as well as being able to be renewed.</p>
+        </div>
+        <div>
+            <input type="text" id="nameInput" placeholder="Enter student's name" >
+            <input type="text" id="task1Input" placeholder="First assignment grade %" >
+            <input type="text" id="task2Input" placeholder="Second assignment grade %" >
+        </div>
+        <div>
+            <button id="addName">Add student info</button>
+            <button id = "showButton">Show student info</button>
+            <button id="clearArray">Clear student info</button>
+        </div>
+        <p id ="outputMsg"></p>
+	</div>
 	<script src =  "js/arrays2a.js"></script>
   </body>
 </html>

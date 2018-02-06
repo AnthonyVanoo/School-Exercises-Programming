@@ -45,6 +45,10 @@ function listNames () {
         if (taskAverage >= 40 ) {
             studyPoints = 5;
         }
+        if (taskAverage < 40) {
+            studyPoints = 0;
+            grade = 0;
+        }
         if ( (taskAverage >= 40) || (taskAverage >= 44)) {
             grade = 1;
         }
@@ -60,7 +64,7 @@ function listNames () {
         if ( taskAverage >= 75) {
             grade = 5;
         }
-        msg += "<br>" + nameArray[i] + ", first task: " + firstTaskArray[i] + "%, Second task: " + secondTaskArray[i] + "%, task average: " + taskAverage + "%, Study Points: " + studyPoints + ", Grade: " + grade;
+        msg += "<br>" + nameArray[i] + ", first task: " + firstTaskArray[i] + "%, Second task: " + secondTaskArray[i] + "%, task average: " + taskAverage + "%, Study Points: " + studyPoints + ", Grade: " + grade + "<br>";
     }
     
     outputElem.innerHTML = "List of student information: " + msg;
