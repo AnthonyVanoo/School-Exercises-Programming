@@ -1,0 +1,27 @@
+h1 {
+	font: 20px "Arial Black", "Helvetica Bold", sans-serif;
+    letter-spacing:.4em;
+}
+       
+h2 {
+	font: 18px "Arial Black", "Helvetica Bold", sans-serif;
+}
+body{
+	background-image: url("../images/tableTexture.jpg");
+	color: white;
+}
+        
+.panel{
+	display: inline-block;
+	border: 3px solid red;	
+	border-radius: 25px;	
+	width:200px;
+	margin: 50px;
+	text-align:center;
+}
+			
+img{
+	padding: 20px;
+	width: 50px;
+	height: 50px;
+}

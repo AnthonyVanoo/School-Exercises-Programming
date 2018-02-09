@@ -1,0 +1,40 @@
+<!DOCTYPE html> 
+
+<html>
+
+<head>
+	<title> simple dice game</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" media="screen" href="css/diceGame.css" />
+</head>
+
+<body >
+	<div class = "panel" id="player1">
+		<h2> Player 1 </h2>
+		<p>
+			<img id="p1d1" src= "images/dice1.png" />
+			<img id="p1d2" src= "images/dice1.png" /><br/>
+			Score = <span id= "p1score"> 0 </span>
+		</p>
+		<button  id="p1ThrowButton">Throw</button>
+	</div>
+
+	<div class = "panel" id="player2">
+		<h2> Player 2 </h2>
+		<p>
+			<img id="p2d1" src= "images/dice1.png" />
+			<img id="p2d2" src= "images/dice1.png" /><br/>
+			Score = <span id= "p2score"> 0 </span>
+		</p>	
+		<button  id="p2ThrowButton">Throw</button>		
+	</div>
+
+	<div>
+		<h1 id = "statusLine">
+			Start: Player 1 to throw
+		</h1>
+	</div>
+	<script src="js/diceGame.js"></script>
+</body>
+
+</html>
