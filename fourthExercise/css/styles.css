@@ -1,0 +1,18 @@
+/* CSS stylesheet */
+
+.container { 
+    width: 97%; 
+    margin: 5px;
+    padding: 5px;
+    float: left; 
+}
+
+h1,h3 { margin-top: 5px; padding-top: 5px; }
+
+#studentImage { 
+    max-width: 30%; 
+    max-height: 300px; 
+    float: left;
+}
+
+#information { width: 70%; float: left; padding: 15px; }

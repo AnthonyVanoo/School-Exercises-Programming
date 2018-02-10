@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Student Information Exercise</title>
+        <meta charset="utf-8" >
+        <meta name="author" content="Anthony Vanoostendorp" >
+        <link rel="stylesheet" href="css/styles.css" type="text/css" >
+    </head>
+    <body>
+    
+       <div class="container">
+            <div>
+                <img id="studentImage" src="images/bill.jpg">
+            </div>
+            <div id=information>
+                <h2 id="studentName">Bill Tougan</h2>
+                <p id="studentDOB">Date of birth:<br>17.02.1998</p>
+                <p id="studentHome">Tampere, Finland</p>
+            </div>
+        </div>
+        <div class="container">
+            <div>
+                <h3>Student Progress</h3>
+                <button id="showProgress">Show Progress</button>
+                <p id="studentStatus" >Click to show student's progress.</p>
+                <p id="gradeAndCr"></p>
+            </div>
+            <div>
+                <h3>Enter in student's completed tasks</h3>
+                <input id="task1Input" placeholder="Score for first task %">
+                <button id="task1Button">Enter Task</button>
+                <input id="task2Input" placeholder="Score for second task %">
+                <button id="task2Button">Enter Task</button>
+                <p id="taskInfo"></p>
+            </div>
+            <div>
+                <h4 id="studentOrder">Student 1 of 5</h4>
+                <button id="previousStudent">Previous</button>
+                <button id="nextStudent">Next</button>
+            </div>
+        </div>
+
+    </body>
+    <script src="js/studentScript.js"></script>
+</html>
