@@ -1,0 +1,54 @@
+p {
+	font: 18px "Arial Black", "Helvetica Bold", sans-serif;
+	color:navy;  
+}
+.table div {
+	position: absolute;
+	display: inline;
+	margin: auto auto;
+	padding: 0px 5px;
+	border: 1px solid black;
+	text-align:center;
+	width: 100px;
+	height: 160px;
+}
+.table img {
+	position: absolute;
+	display: block;
+	margin: auto auto;
+	padding:0px;
+	border: 1px solid black;
+	/*width: 100px;
+	height: 150px;*/
+}
+.table {
+	position: relative;
+	height: 250px;
+	background-color:green;
+	min-width:480px;
+	max-width:960px;
+	margin: 0 auto;
+}
+.t2 img {
+    left: 50px;
+}
+/*.card {
+	top:300px;
+	left:200px;
+}*/
+#dropzonehearts {
+	top:50px;
+	left:50px;
+}
+#dropzoneclubs {
+	top:50px;
+	left:200px;
+}
+#dropzonediamonds {
+	top:50px;
+	left:350px;
+}
+#dropzonespades {
+	top:50px;
+	left:500px;
+}

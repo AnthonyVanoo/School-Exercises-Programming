@@ -105,12 +105,14 @@ function updateGame(playerJustThrown,score1,score2) {
 }
 function gameOver() {
 	//decide who wins by comparing player1 and player 2 score
-    if ( player1Score > player2Score) {
-        statusLineElem.textContent = "Player 1 wins!";
-    } else if ( player1Score == player2Score ) {
-        statusLineElem.textContent = "It's a Draw!!";
-    } else {
-        statusLineElem.textContent = "Player 2 wins!";
+    if (throwsCompleted <= 3 ) {
+        if ( player1Score > player2Score) {
+            statusLineElem.textContent = "Player 1 wins!";
+        } else if ( player1Score == player2Score ) {
+            statusLineElem.textContent = "It's a Draw!!";
+        } else {
+            statusLineElem.textContent = "Player 2 wins!";
+        }
     }
 	//output an appropriate message
 }

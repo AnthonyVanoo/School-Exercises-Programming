@@ -1,6 +1,13 @@
 /* CSS stylesheet */
 
-.container { 
+@import url('https://fonts.googleapis.com/css?family=Scada');
+
+body {
+    background-color: rgba(47,79,79,.7);
+    font-family: 'Scada', sans-serif;
+}
+
+.container {
     width: 97%; 
     margin: 5px;
     padding: 5px;
