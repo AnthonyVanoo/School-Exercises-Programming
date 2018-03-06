@@ -42,7 +42,7 @@ function playerThrows(thisplayer) {
 	console.log("player number"+ thisplayer);
 	//check that value of thisplayer is correct, with  console.log("player number"+ thisplayer);
 	// check if playerToThrowNext is not this player, then return from the function immediately
-    if ( thisplayer != playerToThrowNext ) {
+    if ( (thisplayer != playerToThrowNext) || (gameInProgress == false ) ) {
         return;
     } else { 
         // in this case the user has pressed the wrong player button
@@ -60,7 +60,8 @@ function playerThrows(thisplayer) {
             p1d1ImgElem.src = fileName1;
             p1d2ImgElem.src = fileName2;
 
-        } else {
+        } 
+        if ( thisplayer == 2 ) {
             p2d1ImgElem.src = fileName1;
             p2d2ImgElem.src = fileName2;
         }
@@ -70,6 +71,7 @@ function playerThrows(thisplayer) {
 }
 function updateGame(playerJustThrown,score1,score2) {
 	
+    
     if (playerJustThrown == 1 ) {
         player1Score += score1 + score2;
         p1ScoreElem.textContent = player1Score;
@@ -80,7 +82,7 @@ function updateGame(playerJustThrown,score1,score2) {
 	//check whether the last throw was a double i.e. score1 and score2 are equal
     if ( score1 == score2 ) {
         //if yes, prompt the same player to throw again, and don't update the 'player to throw next'
-        statusLineElem.textContent = "Player" + playerJustThrown + "got a double, roll again!";
+        statusLineElem.textContent = "Player" + playerJustThrown + " got a double, roll again!";
         return;
     }
 	
@@ -97,21 +99,25 @@ function updateGame(playerJustThrown,score1,score2) {
 	// if no, if playerJustThrown is player1, then make next player player2
 	// update the status message accordingly
 	// if no and if playerJustThrown is player2, check whether there are still more throws
-	// no more throws call the gameOver() function
-	if ( throwsCompleted >= MAXTHROWSPERPLAYER ){
+    // no more throws call the gameOver() function
+    if ( throwsCompleted >= MAXTHROWSPERPLAYER ){
         gameOver();
         return;
     }
+	
 }
 function gameOver() {
 	//decide who wins by comparing player1 and player 2 score
     if (throwsCompleted <= 3 ) {
         if ( player1Score > player2Score) {
             statusLineElem.textContent = "Player 1 wins!";
+            gameInProgress = false;
         } else if ( player1Score == player2Score ) {
             statusLineElem.textContent = "It's a Draw!!";
+            gameInProgress = false;
         } else {
             statusLineElem.textContent = "Player 2 wins!";
+            gameInProgress = false;
         }
     }
 	//output an appropriate message

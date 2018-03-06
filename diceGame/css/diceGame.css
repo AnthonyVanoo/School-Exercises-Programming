@@ -9,6 +9,7 @@ h2 {
 body{
 	background-image: url("../images/tableTexture.jpg");
 	color: white;
+	padding-left: 25%;
 }
         
 .panel{
@@ -16,6 +17,7 @@ body{
 	border: 3px solid red;	
 	border-radius: 25px;	
 	width:200px;
+	height: 220px;
 	margin: 50px;
 	text-align:center;
 }
@@ -24,4 +26,24 @@ img{
 	padding: 20px;
 	width: 50px;
 	height: 50px;
+}
+
+/* custom styles */
+
+button {
+	font: 12px "Arial Black", "Helvetica Bold", sans-serif;
+	background-color: aliceblue;
+}
+button:hover {
+	background-color: rgb(197, 205, 211);
+}
+
+#statusLine {
+	padding-left: 15px;
+}
+
+@media only screen and (max-width: 900px) {
+    body {
+        padding-left: 2%;
+    }
 }
