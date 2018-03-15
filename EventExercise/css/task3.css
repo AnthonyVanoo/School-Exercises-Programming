@@ -1,13 +1,20 @@
 p {
 	font: 18px "Arial Black", "Helvetica Bold", sans-serif;
 	color:navy;  
+	width: 100%;
+	text-align: center;
+}
+body {
+	color: white;
+	font-size: 18px;
+	background-color: rgba(0, 151, 0, .7);
 }
 .table div {
 	position: absolute;
 	display: inline;
 	margin: auto auto;
 	padding: 0px 5px;
-	border: 1px solid black;
+	border: 3px solid white;
 	text-align:center;
 	width: 100px;
 	height: 160px;
@@ -17,17 +24,20 @@ p {
 	display: block;
 	margin: auto auto;
 	padding:0px;
-	border: 1px solid black;
+	border: 1px solid white;
 	/*width: 100px;
 	height: 150px;*/
 }
 .table {
 	position: relative;
 	height: 250px;
-	background-color:green;
+	background-image: url(../images/crdtbl.jpg);
 	min-width:480px;
 	max-width:960px;
 	margin: 0 auto;
+	border: 10px solid transparent;
+	border-image-source: url(../images/woodtexture.jpg);
+    border-image-repeat: repeat;
 }
 .t2 img {
     left: 50px;

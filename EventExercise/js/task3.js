@@ -62,7 +62,7 @@ c4.addEventListener('dragstart',function(e){
 //miten se toimi var attrValue = elemRef.getAttribute("data-suit");
 
 function restoreElement(e){
-	e.target.style.borderColor = "Black";
+	e.target.style.borderColor = "white";
 }
 
 function checkHeart(e) {
@@ -79,9 +79,10 @@ function heartDrop(e) {
         e.preventDefault();
         let herp = e.dataTransfer.getData("Text");
         e.target.appendChild(document.getElementById(herp));
-        heartDropZone.style.borderColor = "Black";
+        heartDropZone.style.borderColor = "white";
+        display_status("Heart card was dropped into the correct spot!");
     } else {
-        msgArea.textContent = "Sorry wrong area, try a different one."
+        display_status("Sorry wrong area, try a different one.");
     }
 }
 
@@ -98,9 +99,10 @@ function clubDrop(e) {
         e.preventDefault();
         let herp = e.dataTransfer.getData("Text");
         e.target.appendChild(document.getElementById(herp));
-        clubDropZone.style.borderColor = "Black";
+        clubDropZone.style.borderColor = "white";
+        display_status("Club card was dropped into the correct spot!");
     } else {
-        msgArea.textContent = "Sorry wrong area, try a different one."
+        display_status("Sorry wrong area, try a different one.");
     }
 }
 
@@ -117,9 +119,10 @@ function spadeDrop(e) {
         e.preventDefault();
         let herp = e.dataTransfer.getData("Text");
         e.target.appendChild(document.getElementById(herp));
-        spadeDropZone.style.borderColor = "Black";
+        spadeDropZone.style.borderColor = "white";
+        display_status("Spade card was dropped into the correct spot!");
     } else {
-        msgArea.textContent = "Sorry wrong area, try a different one."
+        display_status("Sorry wrong area, try a different one.");
     }
 }
 
@@ -137,9 +140,10 @@ function diamondDrop(e) {
         e.preventDefault();
         let herp = e.dataTransfer.getData("Text");
         e.target.appendChild(document.getElementById(herp));
-        diamondDropZone.style.borderColor = "Black";
+        diamondDropZone.style.borderColor = "white";
+        display_status("Diamond card was dropped into the correct spot!");
     } else {
-        msgArea.textContent = "Sorry wrong area, try a different one."
+        display_status("Sorry wrong area, try a different one.");
     }
 }
 
