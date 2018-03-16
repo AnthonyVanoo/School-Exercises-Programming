@@ -1,0 +1,27 @@
+	p 
+	{
+		font: 18px "Arial Black", "Helvetica Bold", sans-serif;
+		color:navy;  
+	}
+	#cv
+	{
+		border-style: solid;
+		border-color:black;
+		border-width:1px;
+	}
+	.control
+	{
+		width:40px;
+		margin:20px;
+	}
+	#greenButton
+	{
+		background-color:green;
+	}
+	#redButton
+	{
+		background-color:red;
+	}
+#blueButton {
+    background-color: blue;
+}
