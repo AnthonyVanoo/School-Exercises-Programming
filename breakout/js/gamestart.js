@@ -1,18 +1,25 @@
 const UPDATEINTERVAL = 5;
 const MAXRGB = 999999;
+const BALLRIGHTBOUNCESAFE = 620;
+const BALLPADDLETOPBOUNCESAFE = 340;
 let canvasElem = document.getElementById("canvas");
 let ctx = canvasElem.getContext("2d");
-let message = document.getElementById("status_line");
+//let message = document.getElementById("status_line");
+let gameState = true;
 
-let ballMoving = true;
+let ballMoving = false;
 let time= Date.now();
 let keysDown = {};
 let amountToBreak = 23;
 let lives = 3;
+let statusMessage = "";
+let points = 0;
+let winLose = "nothing";
  
 window.addEventListener("keydown",function(e){
 	// add code
     keysDown[e.key] = true;
+    console.log(keysDown);
 });
 
 window.addEventListener("keyup",function(e){
@@ -87,6 +94,7 @@ function colorGen() {
     }
 }
 
+
 let ballSprite = {
 	x: 160,
 	y: 200,
@@ -135,21 +143,25 @@ function updateGameState(secs)
 		//check collide with left wall
 		if (ballSprite.x < 0 ) {
             ballSprite.xSpeed *= -1;
+            ballSprite.x = 0;
         }
 		
 		// check collide with right wall
 		if (ballSprite.x + ballSprite.width > canvasElem.width) {
             ballSprite.xSpeed *= -1;
+            ballSprite.x = BALLRIGHTBOUNCESAFE;
         }
 		
 		// check collide with top
 		if (ballSprite.y < 0 ) {
             ballSprite.ySpeed *= -1;
+            ballSprite.y = 0;
         }
 		
 		// check collide with paddle
 		if (( paddleSprite.height + ballSprite.y > paddleSprite.y  ) && (ballSprite.x >= paddleSprite.x) && (ballSprite.x <= (paddleSprite.x + paddleSprite.width))) {
             ballSprite.ySpeed *= -1;
+            ballSprite.y = BALLPADDLETOPBOUNCESAFE;
         }
             
 /*ballSprite.y is greater than paddleSprite.y AND ballSprite.x
@@ -162,10 +174,13 @@ multiply ySpeed by -1*/
             // set ballMoving = false if ball outside the game area
             ballMoving = false;
             if (lives > 0 ){
-                message.textContent = "Status: You lost a life! " + lives + " left";
+                // message.textContent = "Status: You lost a life! " + lives + " left";
                 resetBall();
             } else {
-                message.textContent = "Game over";
+                // message.textContent = "Game over";
+                winLose = "lost";
+                gameState = false;
+                
             }
             
         }
@@ -180,8 +195,9 @@ multiply ySpeed by -1*/
         if (brickArray[i].visibility) {
                     //15 + 200 < 40 & x >= 0
             if ((ballSprite.y < brickArray[i].yVal + brickArray[i].height  ) && (ballSprite.x >= brickArray[i].xVal) && (ballSprite.x <= (brickArray[i].xVal + brickArray[i].width))) {
-                ballSprite.ySpeed *= -1;
+                ballSprite.ySpeed *= -1.1;
                 brickArray[i].visibility = false;
+                points += 5;
                 amountToBreak--;
             }
         }
@@ -190,8 +206,9 @@ multiply ySpeed by -1*/
         
         if (brickArray2[i].visibility) {
             if ((ballSprite.y < brickArray2[i].yVal + brickArray2[i].height  ) && (ballSprite.x >= brickArray2[i].xVal) && (ballSprite.x <= (brickArray2[i].xVal + brickArray2[i].width))) {
-                ballSprite.ySpeed *= -1;
+                ballSprite.ySpeed *= -1.1;
                 brickArray2[i].visibility = false;
+                points += 5;
                 amountToBreak--;
             }
         }
@@ -201,21 +218,24 @@ multiply ySpeed by -1*/
         if (brickArray3[i].visibility) {
                     //15 + 200 < 40 & x >= 0
             if ((ballSprite.y < brickArray3[i].yVal + brickArray3[i].height  ) && (ballSprite.x >= brickArray3[i].xVal) && (ballSprite.x <= (brickArray3[i].xVal + brickArray3[i].width))) {
-                ballSprite.ySpeed *= -1;
+                ballSprite.ySpeed *= -1.1;
                 brickArray3[i].visibility = false;
+                points += 5;
                 amountToBreak--;
             }
         }
     }
     if (amountToBreak == 0 ){
+        // message.textContent = "YOU WIN!!"
+        winLose = "won";
         ballMoving = false;
-        message.textContent = "YOU WIN!!"
+        gameState = false;
     }
 }
 
 function resetBall() {
     if ( lives > 0 ){
-        ballSprite.ySpeed *= -1;
+        ballSprite.ySpeed = -100;
         ballSprite.x = 130;
         ballSprite.y = 180;
         ballMoving = true;
@@ -257,23 +277,75 @@ function renderGame()
             ctx.fillRect(brickArray3[i].xVal,brickArray3[i].yVal,brickArray3[i].width,brickArray3[i].height);
         }
     }
+    // HUD
+    ctx.fillStyle ="red";
+    ctx.font="20px Verdana";
+    statusMessage = "Lives: " + lives;
+    ctx.fillText(statusMessage,20,450);
+    statusMessage = "Score: " + points;
+    ctx.fillText(statusMessage,500,450);
+    
+    if (winLose == "won") {
+        ctx.strokeStyle ="red";
+        ctx.font="80px Verdana";
+        ctx.strokeText("YOU WIN!",110,250);
+    } else if (winLose == "lost") {
+        ctx.strokeStyle ="red";
+        ctx.font="80px Verdana";
+        ctx.strokeText("GAME OVER",80,250);
+    } else {
+        
+    }
     
     
 }
 
-function run()
-{
+function run() {
+    //clearInterval(checkIntv);
 	updateGameState((Date.now() - time)/1000);
 	renderGame();
 	time = Date.now();
+    //fix for ball moving too soon
+    if (gameState) {
+       ballMoving = true; 
+    }
+    
 }
 
- setInterval(run,UPDATEINTERVAL);
+//setInterval(run,UPDATEINTERVAL);
+
+var checkIntv = 0;
+startSplashScreen();
 
 
+function startSplashScreen(){
+    ctx.fillStyle = "black";
+    ctx.fillRect(0,0,canvasElem.width,canvasElem.height);
+    ctx.strokeStyle ="red";
+    ctx.font="80px Verdana";
+    ctx.strokeText("Breakout!",120,170);
+    ctx.fillStyle = "yellow";
+    ctx.fillRect(250,300,130,60);
+    ctx.fillStyle = "red";
+    ctx.font = "18px Verdana";
+    ctx.fillText("Enter to start",254,330);
+    
+    checkIntv = setInterval(checkSplashScreen,200);
+    
+}
 
-function display_status(messagetoshow){
+function checkSplashScreen() {
+    //alert("spam");
+    if("Enter" in keysDown) {
+        //clearInterval(checkIntv);
+        //alert("Game started");
+        checkIntv = setInterval(run,UPDATEINTERVAL);
+    }
+}
+
+
+/*function display_status(messagetoshow){
 	let st_line = document.getElementById("status_line");
 	st_line.firstChild.nodeValue = messagetoshow;
 
-}
+}*/
