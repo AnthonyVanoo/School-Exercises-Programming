@@ -1,0 +1,100 @@
+//(on each update)
+
+Fetch data from json file
+
+create an array for each selected bus line
+
+display the map fuction
+
+display marker function updates on an interval 1-2sec
+
+    if (selection options "bus line") {
+
+            for loop through the ‘vehicles’ in the array and check whether the vechicle exists
+            if it does update postion
+            else create a new marker
+            
+            set current location {
+                let mymarker at current location
+                add details as an object(bus ID, line)
+            }
+            let currentLocation = new google.maps.LatLng(vegasPlaces[i].xloc,vegasPlaces[i].yloc);
+	
+               let myMarker = new google.maps.Marker({
+                   position: currentLocation,
+                   map:myMap,
+                   title: vegasPlaces[i].displayName,
+               });
+                myMarkers.push(myMarker);
+            }
+            
+
+    }
+
+options: certain bus line, current location, 
+    
+    
+    
+    
+    
+
+showGoogleMap();
+
+
+function showGoogleMap()
+{
+	display_status("fetch map.. ");
+	//let lon = parseFloat(longf.value);
+	//let lat = parseFloat(latf.value);
+	//let zm = parseInt(zoomf.value);
+		
+	//let lat_long = new google.maps.LatLng(lat,lon);
+			
+	let mapOptions = {
+						center:vegasCenter,
+						zoom:STARTZOOMLEVEL,
+						mapTypeId:google.maps.MapTypeId.ROADMAP,
+						mapTypeControl:false,
+						navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL},
+					};
+	myMap = new google.maps.Map(mapDivElem,mapOptions);
+	directionsDiplay.setMap(myMap);
+    display_status(" Position: " + vegasCenter);	
+}
+
+function showAllLocations(){
+    for (let i = 0; i < vegasPlaces.length; i++) {
+       let currentLocation = new google.maps.LatLng(vegasPlaces[i].xloc,vegasPlaces[i].yloc);
+	
+	   let myMarker = new google.maps.Marker({
+           position: currentLocation,
+           map:myMap,
+           title: vegasPlaces[i].displayName,
+       });
+        myMarkers.push(myMarker);
+    }
+	
+										
+	//display_status("Mediapolis position: " + vegasPlaces[i].xloc + vegasPlaces[i].yloc);	
+}
+
+loadPlaceNames(vegasPlaces);
+
+function loadPlaceNames(places){
+	let nameToShowNode;
+	let optionNode,optionNodeCopy;
+	
+	// loop through places array, create <option> element and append to start and end <select> elements
+	for (let count = 0; count < places.length; count++){
+		// create option node
+		nameToShowNode = document.createTextNode(places[count].displayName);
+		optionNode = document.createElement("option");
+		optionNode.appendChild(nameToShowNode);
+		optionNode.setAttribute("value",count);
+		// create a copy of the node 
+		optionNodeCopy = optionNode.cloneNode(true);
+		// add the node and the clone to two <select> elements
+		startElem.appendChild(optionNode);
+		endElem.appendChild(optionNodeCopy);
+	}
+}
