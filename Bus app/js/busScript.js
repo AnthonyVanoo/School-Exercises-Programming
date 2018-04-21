@@ -1,4 +1,5 @@
 let mapDivElem = document.getElementById("mapholder");
+let busOption1 = document.getElementById("bus21");
 let clearBtn = document.getElementById("clearButton");
 let buses;
 let busMarkers = [];
@@ -6,14 +7,26 @@ let busMarkers = [];
 clearBtn.addEventListener('click', clearAllMarkers);
 
 let myMap;
+/*
+* make a class for each bus in the array
+* class should include the marker array??
+* bus ID
+*/
+class bus {
+    cunstructor(busMarker, busId) {
+        this.busMarker = busMarker;
+        this.busId = busId;
+    }
+    
+}
 
 //(on each update)
 
 //Fetch data from json file
-let staticData = "json/staticBusData.json";
+let staticData = "http://lissu-api.herokuapp.com/";
 
 showGoogleMap();
-getData();
+setInterval(getData, 1500);
 
 function getData() {
     fetch(staticData)
@@ -34,19 +47,24 @@ function getData() {
 
 //create an array for each selected bus line
 function busInfoOrganizer(thisBus) {
-    console.log("Bus = " + thisBus.line);
-    //buses = vehicle;
-    //console.log(buses)
-    //showGoogleMap();
-    //markerUpdate();
-    let currentBusLocation = new google.maps.LatLng(thisBus.latitude,thisBus.longitude);
-	
-	   let myMarker = new google.maps.Marker({
-           position: currentBusLocation,
-           map:myMap,
-           title: thisBus.line + " to " + thisBus.destination,
-       });
-        busMarkers.push(myMarker);
+    //console.log("Bus = " + thisBus.id);
+    if (thisBus.line == busOption1.value) {
+        if (busMarkers.includes("PTL_1","PTL_2","PTL_3","PTL_5","PTL_7")) {
+            //??update location
+        } else {
+            
+            let currentBusLocation = new google.maps.LatLng(thisBus.latitude,thisBus.longitude);
+
+               let myMarker = new google.maps.Marker({
+                   position: currentBusLocation,
+                   map:myMap,
+                   title: thisBus.line + " to " + thisBus.destination,
+               });
+            let thisMarker = {busMarker: myMarker, busId: thisBus.id};
+            busMarkers.push(thisMarker);
+            console.log(thisMarker);    
+        }
+    }
 }
 
 /*display the map fuction*/
@@ -66,7 +84,7 @@ function showGoogleMap() {
 
 function clearAllMarkers() {
     for (let n = 0; n < busMarkers.length; n++) {
-        busMarkers[n].setMap(null);
+        busMarkers[n].busMarker.setMap(null);
     }
     busMarkers.length = 0;
 }
