@@ -3,6 +3,8 @@ let busOption1 = document.getElementById("bus21");
 let clearBtn = document.getElementById("clearButton");
 let buses;
 let busMarkers = [];
+let numberOfCurrentBus = 0;
+let currentBusIds = [];
 
 clearBtn.addEventListener('click', clearAllMarkers);
 
@@ -12,13 +14,14 @@ let myMap;
 * class should include the marker array??
 * bus ID
 */
+/*
 class bus {
     cunstructor(busMarker, busId) {
         this.busMarker = busMarker;
         this.busId = busId;
     }
     
-}
+}*/
 
 //(on each update)
 
@@ -27,6 +30,24 @@ let staticData = "http://lissu-api.herokuapp.com/";
 
 showGoogleMap();
 setInterval(getData, 1500);
+firstData();
+
+function firstData() {
+    fetch(staticData)
+        .then(function(response) {
+            if (response.status !== 200) {
+                // data transfer not complete
+                return;
+            }
+            response.json().then(function(data) {
+                    //handle each item in the data, call a function using that data
+                    data.vehicles.forEach(initialBusData);
+                });
+            })
+        .catch(function(err) {
+            console.log('Fetch Error :' + err);
+    });
+}
 
 function getData() {
     fetch(staticData)
@@ -46,24 +67,45 @@ function getData() {
 }
 
 //create an array for each selected bus line
-function busInfoOrganizer(thisBus) {
-    //console.log("Bus = " + thisBus.id);
-    if (thisBus.line == busOption1.value) {
-        if (busMarkers.includes("PTL_1","PTL_2","PTL_3","PTL_5","PTL_7")) {
-            //??update location
-        } else {
-            
-            let currentBusLocation = new google.maps.LatLng(thisBus.latitude,thisBus.longitude);
-
-               let myMarker = new google.maps.Marker({
-                   position: currentBusLocation,
-                   map:myMap,
-                   title: thisBus.line + " to " + thisBus.destination,
-               });
+function initialBusData(thisBus) {
+    let currentBusLocation = new google.maps.LatLng(thisBus.latitude,thisBus.longitude);
+        if (thisBus.line.includes(busOption1.value)) {
+            let myMarker = new google.maps.Marker({
+                position: currentBusLocation,
+                map:myMap,
+                title: thisBus.line + " to " + thisBus.destination,
+            });
             let thisMarker = {busMarker: myMarker, busId: thisBus.id};
             busMarkers.push(thisMarker);
-            console.log(thisMarker);    
+            console.log(thisMarker);
+        } 
+}
+
+function busInfoOrganizer(thisBus) {
+    //console.log("Bus = " + thisBus.id);
+    if (thisBus.line.includes(busOption1.value)) {
+        //if blah exists update location
+        for (let n = 0; n < busMarkers.length; n++ ) {
+            if (thisBus.id == busMarkers[n].busId) {
+                //??update location
+                console.log(busMarkers[n].busId + " " + thisBus.id);
+                busMarkers[n].busMarker.setPosition(new google.maps.LatLng(thisBus.latitude,thisBus.longitude));
+                
+            } else {
+                
+                let currentBusLocation = new google.maps.LatLng(thisBus.latitude,thisBus.longitude);
+
+                let myMarker = new google.maps.Marker({
+                    position: currentBusLocation,
+                    map:myMap,
+                    title: thisBus.line + " to " + thisBus.destination,
+                });
+                let thisMarker = {busMarker: myMarker, busId: thisBus.id};
+                busMarkers.push(thisMarker);
+                console.log(thisMarker);    
+            }
         }
+        
     }
 }
 
@@ -74,7 +116,7 @@ function showGoogleMap() {
 			
 	let mapOptions = {
 						center:lat_long,
-						zoom:14,
+						zoom:16,
 						mapTypeId:google.maps.MapTypeId.ROADMAP,
 						mapTypeControl:false,
 						navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL},
