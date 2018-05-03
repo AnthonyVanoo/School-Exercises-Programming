@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.header {
+    margin: 40px 0;
+}
+
+.imgLogo {
+    max-width: 300px;
+    max-height: 200px;
+}
+
+#map {
+    height: 400px;
+}
+
+.mid {
+    position: absolute;
+    top: 35%;
+}

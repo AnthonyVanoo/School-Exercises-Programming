@@ -1,0 +1,51 @@
+{
+ "title":"Everts in Southern Finland",
+ "events":
+	[
+		{
+			"name":"Tomatoes! Tomatoes! Stand Up Comedy Festival",
+			"picture":"tomaattilog.jpg",
+			"address":"Verkatehdas, Paasikiventie 2, Hämeenlinna",
+			"city":"Hämeenlinna",
+			"date":"May 9 - 12",
+            "website":"www.tomaattejatomaatteja.com",
+			"description":"Tomatoes! Tomatoes! will once again bring the quickest wits in Finnish stand up to Hämeenlinna on 9-12 May. The flagship event for stand-up comedy in Finland is always guaranteed to bring top comedians to town."
+		},
+        {
+			"name":"World Village Festival",
+			"picture":"mK.png",
+			"address":"Kaisaniemen puisto, Helsinki",
+			"city":"Helsinki",
+			"date":"May 26 - 27",
+            "website":"www.maailmakylassa.fi",
+			"description":"The cultures of the world will come together in Kaisaniemi Park and the Central Railway Station Square on the last weekend in May for a major free event offering a wealth of art and action for the whole family. The programme will include dozens of performances from various parts of the world, together with stalls featuring a wide range of interests from civic organisations to exotic cuisine."
+		},
+        {
+			"name":"Pispala Schottische",
+			"picture":"tyo.png",
+			"address":"Keskustori 4, Tampere",
+			"city":"Tampere",
+			"date":"June 13 - 17",
+            "website":"www.sottiisi.fi",
+			"description":"This major international celebration of folk dance and music has been bringing enthusiasts and their friends to Tampere since 1970 for the most footloose scene of the summer. The versatile programme provides a full range of folk dance concerts, training courses and night dances. Our 2018 creation “Work and merrymaking” will portray the life of 20th century industrial workers in an urban society, drawing the mood from ramping up the operation and the various stages of cotton milling, nursery rhymes and games, the genteel dances of young adults and the evening social dances of working people."
+		},
+        {
+			"name":"Seurasaari Midsummer Bonfires",
+			"picture":"sjv.jpg",
+			"address":"Seurasaari, Helsinki",
+			"city":"Helsinki",
+			"date":"June 22 - 23",
+            "website":"www.seurasaarenjuhannusvalkeat.fi",
+			"description":"This urban celebration is a living part of Finland’s national cultural heritage that brings nostalgia to the fore. Organised in a museum setting, the festival has accommodated fresh and traditional perspectives on the Finnish Midsummer holiday since as far back as 1954."
+		},
+        {
+			"name":"Organ night and Aria Festival",
+			"picture":"ua.jpg",
+			"address":"Pappilantie 2, Espoo",
+			"city":"Espoo",
+			"date":"June 7 - August 30",
+            "website": "www.urkuyofestival.fi",
+			"description":"This unique series of late evening concerts complements the mediaeval stonewalled ambience of Espoo Cathedral with a versatile, high standard programme throughout the summer. Leading artists of vocal, organ, chamber and orchestral music provide memorable experiences on intimate summer evenings. The Artistic Director of Organ Night and Aria is the distinguished pianist Erkki Korhonen."
+		}
+	]
+}
