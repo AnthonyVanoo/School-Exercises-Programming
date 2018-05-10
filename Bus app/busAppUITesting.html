@@ -11,40 +11,54 @@
     <body>
 		<div id= "container">
 			<div id="mapholder"></div>
-            <button id="ControlPanelButton" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#controlPanel" aria-expanded="false" aria-controls="controlPanel">
+            <button id="ControlPanelButton" class="btn btn-dark" type="button" data-toggle="collapse" data-target="#controlPanel" aria-expanded="false" aria-controls="controlPanel">
                 Menu
             </button>
 		
-			<div id="controlPanel" class="col-md-7 collapse">
-			    <div>
-			        <button>Current Location</button>
-			        <button>All Busses</button>
-			        <!--two drop down menus to show a route (center,maincamp,media,currentLoc), maybe option to enter an address-->
-			    </div>
+			<div id="controlPanel" class="col-lg-3 collapse">
+			    
 				<div class="accordion" id="accordionExample">
                   <div class="card">
-                    <div class="card-header" id="headingOne">
+                    <div class="card-header text-center" id="headingOption">
                       <h5 class="mb-0">
-                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <button class="btn btn-dark btn-wide" type="button" data-toggle="collapse" data-target="#collapseOption" aria-expanded="true" aria-controls="collapseOption">
+                          General Options
+                        </button>
+                      </h5>
+                    </div>
+
+                    <div id="collapseOption" class="collapse show" aria-labelledby="headingOption" data-parent="#accordionExample">
+                      <div class="card-body text-center">
+                        <button id="currentLocationButton" class="btn btn-dark btn-sm">Current Location</button>
+                        <button id="showAllButton" class="btn btn-dark btn-sm">All Buses</button>
+                        <button id="clearButton" class="btn btn-dark btn-sm">Clear Buses</button>
+                        <!--two drop down menus to show a route (center,maincamp,media,currentLoc), maybe option to enter an address-->
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header text-center" id="headingOne">
+                      <h5 class="mb-0">
+                        <button class="btn btn-dark btn-wide" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                           Buses to Mediapolis
                         </button>
                       </h5>
                     </div>
 
-                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                       <div class="card-body">
-                        <button class="lineButton btn-primary" value="17">17</button>
-                        <button class="lineButton" value="17">17</button>
-                        <button class="lineButton" value="17">17</button>
-                        <button class="lineButton" value="17">17</button>
+                        <button class="btn btn-dark" value="17">17</button>
+                        <button class="btn btn-light" value="17">17</button>
+                        <button class="btn btn-light" value="17">17</button>
+                        <button class="btn btn-light" value="17">17</button>
                       </div>
                     </div>
                   </div>
                   <div class="card">
-                    <div class="card-header" id="headingTwo">
+                    <div class="card-header text-center" id="headingTwo">
                       <h5 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                          Collapsible Group Item #2
+                        <button class="btn btn-dark btn-wide collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                          Buses to TAMK Main Campus
                         </button>
                       </h5>
                     </div>
@@ -55,16 +69,27 @@
                     </div>
                   </div>
                   <div class="card">
-                    <div class="card-header" id="headingThree">
+                    <div class="card-header text-center" id="headingThree">
                       <h5 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                          Collapsible Group Item #3
+                        <button class="btn btn-dark btn-wide collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                          All Buses
                         </button>
                       </h5>
                     </div>
                     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                       <div class="card-body">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                        <button class="lineButton btn-primary" value="17">17</button>
+                        <button class="lineButton" value="17">17</button>
+                        <button class="lineButton" value="17">17</button>
+                        <button class="lineButton" value="17">17</button>
+                        <button class="lineButton btn-primary" value="17">17</button>
+                        <button class="lineButton" value="17">17</button>
+                        <button class="lineButton" value="17">17</button>
+                        <button class="lineButton" value="17">17</button>
+                        <button class="lineButton btn-primary" value="17">17</button>
+                        <button class="lineButton" value="17">17</button>
+                        <button class="lineButton" value="17">17</button>
+                        <button class="lineButton" value="17">17</button>
                       </div>
                     </div>
                   </div>

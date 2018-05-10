@@ -33,6 +33,9 @@ body {
     right: 2px;
     z-index: 1;
     background-color: azure;
-    padding: 5px 0;
+    padding: 10px;
 }
 
+.btn-wide {
+  width: 250px;
+}

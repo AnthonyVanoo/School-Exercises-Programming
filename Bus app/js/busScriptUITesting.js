@@ -1,41 +1,49 @@
+const INITIALLAT = 61.49911;
+const INITIALLNG = 23.78712;
+const REFRESHTIMER = 120000;
+const UPDATETIMER = 1500;
+
 let mapDivElem = document.getElementById("mapholder");
-let busLineOptions= [];
-//let clearBtn = document.getElementById("clearButton");
+let curLocBtn = document.getElementById("currentLocationButton");
+let showAllBtn = document.getElementById("showAllButton");
+let clearBtn = document.getElementById("clearButton");
 let buses;
 let busMarkers = [];
-let numberOfCurrentBus = 0;
-let currentBusIds = [];
+let locationMarkers = [];
+let busLineOptions= [];
 let busUpdateInterval;
 
 //add two options for ref
 busLineOptions[0] = "17";
 busLineOptions[1] = "21";
-console.log(busLineOptions);
-//clearBtn.addEventListener('click', clearAllMarkers);
+//console.log(busLineOptions);
+
+curLocBtn.addEventListener('click', showCurrentLocation);
+clearBtn.addEventListener('click', clearAllMarkers);
+
 
 let myMap;
-/*
-* make a class for each bus in the array
-* class should include the marker array??
-* bus ID
-*/
-/*
-class bus {
-    cunstructor(busMarker, busId) {
-        this.busMarker = busMarker;
-        this.busId = busId;
-    }
-    
-}*/
 
-//(on each update)
-
-//Fetch data from json file
 let staticData = "json/staticBusData.json";
 
 showGoogleMap();
 firstData();
-let busArrayRefresh = setInterval(firstData,120000);
+let busArrayRefresh = setInterval(firstData,REFRESHTIMER);
+
+/*display the map fuction*/
+function showGoogleMap() {
+		
+	let lat_long = new google.maps.LatLng(INITIALLAT, INITIALLNG);
+			
+	let mapOptions = {
+						center:lat_long,
+						zoom:10,
+						mapTypeId:google.maps.MapTypeId.ROADMAP,
+						mapTypeControl:false,
+						navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL},
+					};
+	myMap = new google.maps.Map(mapDivElem,mapOptions);
+}
 
 //get the data for the first time to create the array
 function firstData() {
@@ -54,7 +62,7 @@ function firstData() {
         .catch(function(err) {
             console.log('Fetch Error :' + err);
     });
-    let busUpdateInterval = setInterval(getData, 1500);
+    let busUpdateInterval = setInterval(getData, UPDATETIMER);
 }
 
 //have an interval that gets the data to then update the markers
@@ -68,7 +76,7 @@ function getData() {
             }
             response.json().then(function(data) {
                     //handle each item in the data, call a function using that data
-                    data.vehicles.forEach(busInfoOrganizer);
+                    data.vehicles.forEach(busLocationUpdater);
                 });
             })
         .catch(function(err) {
@@ -92,7 +100,7 @@ function initialBusData(thisBus) {
         } 
 }
 
-function busInfoOrganizer(thisBus) {
+function busLocationUpdater(thisBus) {
     //console.log("Bus = " + thisBus.id);
     if (busLineOptions.includes(thisBus.line)) {
         //console.log(busMarkers);
@@ -111,24 +119,34 @@ function busInfoOrganizer(thisBus) {
     }
 }
 
-/*display the map fuction*/
-function showGoogleMap() {
-		
-	let lat_long = new google.maps.LatLng(61.49911, 23.78712);
-			
-	let mapOptions = {
-						center:lat_long,
-						zoom:10,
-						mapTypeId:google.maps.MapTypeId.ROADMAP,
-						mapTypeControl:false,
-						navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL},
-					};
-	myMap = new google.maps.Map(mapDivElem,mapOptions);
-}
-
+//clears all current markers
 function clearAllMarkers() {
     for (let n = 0; n < busMarkers.length; n++) {
         busMarkers[n].busMarker.setMap(null);
     }
     busMarkers.length = 0;
+}
+
+//display the user's current location
+function showCurrentLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+        alert("Geolocation is not supported by this browser.");
+    }
+    function showPosition(position) {
+        
+        let currentLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+        alert("Made it to showPos" + currentLocation);
+        let myMarker = new google.maps.Marker({
+            position: currentLocation,
+            map:myMap,
+            icon: {
+                url: "img/solaireMarkerSmNb.png",
+                rotation: 180,
+            },
+            title: "Current Location",
+        });
+        locationMarkers.push(myMarker);
+    }
 }
