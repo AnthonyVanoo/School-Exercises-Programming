@@ -1,14 +1,17 @@
 let mapDivElem = document.getElementById("mapholder");
-let busOption1 = document.getElementById("bus21");
-let clearBtn = document.getElementById("clearButton");
+let busLineOptions= [];
+//let clearBtn = document.getElementById("clearButton");
 let buses;
 let busMarkers = [];
 let numberOfCurrentBus = 0;
 let currentBusIds = [];
-let busArrayRefresh = setInterval(firstData,20000);
 let busUpdateInterval;
 
-clearBtn.addEventListener('click', clearAllMarkers);
+//add two options for ref
+busLineOptions[0] = "17";
+busLineOptions[1] = "21";
+console.log(busLineOptions);
+//clearBtn.addEventListener('click', clearAllMarkers);
 
 let myMap;
 /*
@@ -28,11 +31,11 @@ class bus {
 //(on each update)
 
 //Fetch data from json file
-let staticData = "http://lissu-api.herokuapp.com/";
+let staticData = "json/staticBusData.json";
 
 showGoogleMap();
-//setInterval(getData, 1500);
 firstData();
+let busArrayRefresh = setInterval(firstData,120000);
 
 //get the data for the first time to create the array
 function firstData() {
@@ -76,7 +79,7 @@ function getData() {
 //create an array for each selected bus line
 function initialBusData(thisBus) {
     let currentBusLocation = new google.maps.LatLng(thisBus.latitude,thisBus.longitude);
-        if (thisBus.line.includes(busOption1.value)) {
+        if (busLineOptions.includes(thisBus.line)) {
             let myMarker = new google.maps.Marker({
                 position: currentBusLocation,
                 map:myMap,
@@ -84,15 +87,15 @@ function initialBusData(thisBus) {
             });
             let thisMarker = {busMarker: myMarker, busId: thisBus.id};
             busMarkers.push(thisMarker);
-            alert("inTial" + busMarkers.length);
-            console.log(thisMarker);
+            //alert("inTial" + busMarkers.length);
+            //console.log(thisMarker);
         } 
 }
 
 function busInfoOrganizer(thisBus) {
     //console.log("Bus = " + thisBus.id);
-    if (thisBus.line.includes(busOption1.value)) {
-        console.log(busMarkers);
+    if (busLineOptions.includes(thisBus.line)) {
+        //console.log(busMarkers);
         //console.log("Text");
         //if these exists update location
         
@@ -129,42 +132,3 @@ function clearAllMarkers() {
     }
     busMarkers.length = 0;
 }
-/*
-function markerUpdate() {
-    for (i in buses) {
-       let currentBusLocation = new google.maps.LatLng(buses[i].latitude,buses[i].longitude);
-	
-	   let myMarker = new google.maps.Marker({
-           position: currentBusLocation,
-           map:myMap,
-           title: buses[i].line,
-       });
-        busMarkers.push(myMarker);
-    }
-}*/
-
-/*display marker function updates on an interval 1-2sec
-
-if (selection options "bus line") {
-
-            for loop through the ‘vehicles’ in the array and check whether the vechicle exists
-            if it does update postion
-            else create a new marker
-            
-            set current location {
-                let mymarker at current location
-                add details as an object(bus ID, line)
-            }
-            let currentLocation = new google.maps.LatLng(vegasPlaces[i].xloc,vegasPlaces[i].yloc);
-	
-               let myMarker = new google.maps.Marker({
-                   position: currentLocation,
-                   map:myMap,
-                   title: vegasPlaces[i].displayName,
-               });
-                myMarkers.push(myMarker);
-            }
-            
-
-    }
-*/

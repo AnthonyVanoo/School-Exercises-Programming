@@ -5,7 +5,6 @@ let buses;
 let busMarkers = [];
 let numberOfCurrentBus = 0;
 let currentBusIds = [];
-let busArrayRefresh = setInterval(firstData,20000);
 let busUpdateInterval;
 
 clearBtn.addEventListener('click', clearAllMarkers);
@@ -36,7 +35,6 @@ firstData();
 
 //get the data for the first time to create the array
 function firstData() {
-    clearAllMarkers();
     fetch(staticData)
         .then(function(response) {
             if (response.status !== 200) {
@@ -84,7 +82,7 @@ function initialBusData(thisBus) {
             });
             let thisMarker = {busMarker: myMarker, busId: thisBus.id};
             busMarkers.push(thisMarker);
-            alert("inTial" + busMarkers.length);
+            //alert("initial" + busMarkers.length);
             console.log(thisMarker);
         } 
 }
@@ -93,17 +91,31 @@ function busInfoOrganizer(thisBus) {
     //console.log("Bus = " + thisBus.id);
     if (thisBus.line.includes(busOption1.value)) {
         console.log(busMarkers);
-        //console.log("Text");
         //if these exists update location
         
-        for (let n = 0; n < busMarkers.length; n++ ) {
-            if (thisBus.id == busMarkers[n].busId) {
-                //??update location
-                //console.log(busMarkers[n].busId + " " + thisBus.id);
-                busMarkers[n].busMarker.setPosition(new google.maps.LatLng(thisBus.latitude,thisBus.longitude));
-                
+        if(busMarkers.busId.includes(thisBus.id)) {
+            for (let n = 0; n < busMarkers.length; n++ ) {
+                if (thisBus.id == busMarkers[n].busId) {
+                    //??update location
+                    //console.log(busMarkers[n].busId + " " + thisBus.id);
+                    busMarkers[n].busMarker.setPosition(new google.maps.LatLng(thisBus.latitude,thisBus.longitude));
+
+                }
             }
-        }
+        } /*else {
+                
+                let currentBusLocation = new google.maps.LatLng(thisBus.latitude,thisBus.longitude);
+
+                let myMarker = new google.maps.Marker({
+                    position: currentBusLocation,
+                    map:myMap,
+                    title: thisBus.line + " to " + thisBus.destination,
+                });
+                let thisMarker = {busMarker: myMarker, busId: thisBus.id};
+                busMarkers.push(thisMarker);
+                alert("infoorg" + busMarkers.length);
+                console.log(thisMarker);    
+            }*/
         
     }
 }
