@@ -24,7 +24,7 @@ let allBusLines = ["1", "1A", "2", "3A", "3B", "4", "4Y", "5", "6", "8", "9A", "
 
 //event listeners for UI
 document.getElementById("currentLocationButton").addEventListener('click',showCurrentLocation);
-document.getElementById("clearButton").addEventListener('click', clearAllMarkers);
+document.getElementById("clearButton").addEventListener('click', function(){ clearAllMarkers(); clearBtnLines();});
 document.getElementById("showTamk").addEventListener('click', function(){showLandmark("Tamk");});
 document.getElementById("showMediapolis").addEventListener('click', function(){showLandmark("Mediapolis");});
 document.getElementById("showAllMediapolis").addEventListener('click', function(){locationLines("Mediapolis");});
@@ -172,6 +172,7 @@ function clearAllMarkers() {
         busMarkers[n].busMarker.setMap(null);
     }
     busMarkers.length = 0;
+    
 }
 
 //display the user's current location
@@ -315,6 +316,19 @@ function showLandmark(landmark) {
 			  zoomMapOut(addressLocation);
 		  }
 	  });
+}
+
+//clear markers once clear button is clicked
+function clearBtnLines() {
+    busLineOptions = 0;
+    busLineOptions = [];
+    for (let i = 0; i < allBusLines.length; i++) {
+        let buttonElems = document.getElementsByClassName("line" + allBusLines[i]);
+        for (let i = 0; i < buttonElems.length; i++) {
+            buttonElems[i].classList.remove("btn-dark");
+            buttonElems[i].classList.add("btn-light");
+        }
+    }
 }
 
 //slight zoom for clear area
