@@ -189,29 +189,36 @@ function showCurrentLocation() {
     }
 }
 
-
 //how the bus lines are selected/deselected
-function lineBtnUpdate(clickedBtn) {
-    let elemClass = "line" + clickedBtn;
+function lineBtnUpdate(clickedBtn,btnType) {
+    let elemId = "line" + clickedBtn;
+    let elemId2 = "line" + clickedBtn + btnType;
+    console.log(elemId);
+    let btnElem = document.getElementById(elemId);
     if (busLineOptions.includes(clickedBtn)) {
-        //goes through all of the buttons and changes the style
-        let buttonElems = document.getElementsByClassName(elemClass);
-        for (let i = 0; i < buttonElems.length; i++) {
-            buttonElems[i].classList.remove("btn-dark");
-            buttonElems[i].classList.add("btn-light");
-        } 
+        if (btnType == "Med") {
+            document.getElementById(elemId2).classList.remove("btn-dark");
+            document.getElementById(elemId2).classList.add("btn-light");
+        } else if (btnType == "tamk") {
+            document.getElementById(elemId2).classList.remove("btn-dark");
+            document.getElementById(elemId2).classList.add("btn-light"); 
+        }
         busLineOptions = busLineOptions.filter(line => line !== clickedBtn);
+        btnElem.classList.remove("btn-dark");
+        btnElem.classList.add("btn-light");
         initialData();
     } else {
-        let buttonElems = document.getElementsByClassName(elemClass);
-        for (let i = 0; i < buttonElems.length; i++) {
-            buttonElems[i].classList.add("btn-dark");
-            buttonElems[i].classList.remove("btn-light");
+        if (btnType == "Med") {
+            document.getElementById(elemId2).classList.add("btn-dark");
+            document.getElementById(elemId2).classList.remove("btn-light");
+        } else if (btnType == "Tamk") {
+            document.getElementById(elemId2).classList.add("btn-dark");
+            document.getElementById(elemId2).classList.remove("btn-light");
         }
         busLineOptions.push(clickedBtn);
         console.log(busLineOptions);
-        //btnElem.classList.remove("btn-light");
-        //btnElem.classList.add("btn-dark");
+        btnElem.classList.remove("btn-light");
+        btnElem.classList.add("btn-dark");
         initialData();
     }
 }

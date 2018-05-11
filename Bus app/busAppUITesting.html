@@ -15,7 +15,7 @@
                 Menu
             </button>
 		
-			<div id="controlPanel" class="col-lg-3 collapse">
+			<div id="controlPanel" class="col-lg-4 collapse">
 			    
 				<div class="accordion" id="accordionExample">
                   <div class="card">
@@ -29,9 +29,9 @@
 
                     <div id="collapseOption" class="collapse show" aria-labelledby="headingOption" data-parent="#accordionExample">
                       <div class="card-body text-center">
-                        <button id="currentLocationButton" class="btn btn-dark btn-sm">Current Location</button>
-                        <button id="showAllButton" class="btn btn-dark btn-sm">All Buses</button>
-                        <button id="clearButton" class="btn btn-dark btn-sm">Clear Buses</button>
+                        <button id="currentLocationButton" class="btn btn-dark btn-line mb-1">Current Location</button>
+                        <button id="showAllButton" class="btn btn-dark btn-line mb-1" onclick="allBusData()">Show All Buses</button>
+                        <button id="clearButton" class="btn btn-dark btn-line mb-1">Clear All Buses</button>
                         <!--two drop down menus to show a route (center,maincamp,media,currentLoc), maybe option to enter an address-->
                       </div>
                     </div>
@@ -45,12 +45,16 @@
                       </h5>
                     </div>
 
-                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                      <div class="card-body">
-                        <button class="btn btn-dark" value="17">17</button>
-                        <button class="btn btn-light" value="17">17</button>
-                        <button class="btn btn-light" value="17">17</button>
-                        <button class="btn btn-light" value="17">17</button>
+                    <div id="collapseOne" class="collapse text-center" aria-labelledby="headingOne" data-parent="#accordionExample">
+                      <div class="card-body ">
+                        <h5>
+                            <button id="showAllMediapolis" class="btn btn-dark btn-line mb-1 mr-1">Show All Buses</button>
+                            <button id="showMediapolis" class="btn btn-dark btn-line mb-1">Show Mediapolis</button>
+                        </h5>
+                        <div class="row">
+                            <button id="line17Med" class="btn btn-light btn-line line17" onclick="lineBtnUpdate('17');">17</button>
+                            <button id="line8Med" class="btn btn-dark btn-line line8" onclick="lineBtnUpdate('8');">8</button>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -63,8 +67,23 @@
                       </h5>
                     </div>
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                      <div class="card-body">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                      <div class="card-body text-center">
+                        <h5>
+                            <button id="showAllTamk" class="btn btn-dark btn-line mb-1 mr-1">Show All Buses</button>
+                            <button id="showTamk" class="btn btn-dark btn-line mb-1">Show TAMK</button>
+                        </h5>
+                        <div class="row">
+                            <button id="line1" class="btn btn-light btn-line line1" onclick="lineBtnUpdate('1');">1</button>
+                            <button id="line5" class="btn btn-light btn-line line5" onclick="lineBtnUpdate('5');">5</button>
+                            <button id="line8" class="btn btn-dark btn-line line8" onclick="lineBtnUpdate('8');">8</button>
+                            <button id="line28A" class="btn btn-light btn-line line28A" onclick="lineBtnUpdate('28A');">28A</button>
+                            <button id="line28B" class="btn btn-light btn-line line28B" onclick="lineBtnUpdate('28B');">28B</button>
+                            <button id="line28C" class="btn btn-light btn-line line28C" onclick="lineBtnUpdate('28C');">28C</button>
+                            <button id="line28Y" class="btn btn-light btn-line line28Y" onclick="lineBtnUpdate('28Y');">28Y</button>
+                            <button id="line29" class="btn btn-light btn-line line29" onclick="lineBtnUpdate('29');">29</button>
+                            <button id="line80" class="btn btn-light btn-line line80" onclick="lineBtnUpdate('80');">80</button>
+                            <button id="line90" class="btn btn-light btn-line line90" onclick="lineBtnUpdate('90');">90</button>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -72,24 +91,29 @@
                     <div class="card-header text-center" id="headingThree">
                       <h5 class="mb-0">
                         <button class="btn btn-dark btn-wide collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                          All Buses
+                          List of All Buses
                         </button>
                       </h5>
                     </div>
                     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                      <div class="card-body">
-                        <button class="lineButton btn-primary" value="17">17</button>
-                        <button class="lineButton" value="17">17</button>
-                        <button class="lineButton" value="17">17</button>
-                        <button class="lineButton" value="17">17</button>
-                        <button class="lineButton btn-primary" value="17">17</button>
-                        <button class="lineButton" value="17">17</button>
-                        <button class="lineButton" value="17">17</button>
-                        <button class="lineButton" value="17">17</button>
-                        <button class="lineButton btn-primary" value="17">17</button>
-                        <button class="lineButton" value="17">17</button>
-                        <button class="lineButton" value="17">17</button>
-                        <button class="lineButton" value="17">17</button>
+                      <div class="card-body text-center">
+                        <h5>
+                            <button id="showAll" class="btn btn-dark btn-line mb-1 mr-1" onclick="allBusData()">Show All Buses</button>
+                            <button id="clearAll" class="btn btn-dark btn-line mb-1" onclick="clearAllMarkers()">Clear All Buses</button>
+                        </h5>
+                        <div class="row">
+                            <button id="line1" class="btn btn-light btn-line line1" onclick="lineBtnUpdate('1');">1</button>
+                            <button id="line5" class="btn btn-light btn-line line5" onclick="lineBtnUpdate('5');">5</button>
+                            <button id="line8" class="btn btn-dark btn-line line8" onclick="lineBtnUpdate('8');">8</button>
+                            <button id="line17" class="btn btn-light btn-line line17" onclick="lineBtnUpdate('17');">17</button>
+                            <button id="line28A" class="btn btn-light btn-line line28A" onclick="lineBtnUpdate('28A');">28A</button>
+                            <button id="line28B" class="btn btn-light btn-line line28B" onclick="lineBtnUpdate('28B');">28B</button>
+                            <button id="line28C" class="btn btn-light btn-line line28C" onclick="lineBtnUpdate('28C');">28C</button>
+                            <button id="line28Y" class="btn btn-light btn-line line28Y" onclick="lineBtnUpdate('28Y');">28Y</button>
+                            <button id="line29" class="btn btn-light btn-line line29" onclick="lineBtnUpdate('29');">29</button>
+                            <button id="line80" class="btn btn-light btn-line line80" onclick="lineBtnUpdate('80');">80</button>
+                            <button id="line90" class="btn btn-light btn-line line90" onclick="lineBtnUpdate('90');">90</button>
+                        </div>
                       </div>
                     </div>
                   </div>
